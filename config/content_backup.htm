@@ -386,9 +386,7 @@ openByGet();
 <p><img alt="" height="464" src="/images/螢幕擷取畫面 2024-11-15 140010.png" width="400"/></p>
 <p><a href="https://youtu.be/KoEaf6greO4?si=d1PLXDFkQagJJMNr">https://youtu.be/KoEaf6greO4?si=d1PLXDFkQagJJMNr</a> </p>
 <p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/KoEaf6greO4" width="560"></iframe></p>
-<h2>"w16_exam1"</h2>
-<p><span><img alt="" height="228" src="/images/螢幕擷取畫面 2024-12-27 142811.png" width="400"/></span></p>
-<p><span><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/0NI8RQ4Mhl0" width="560"></iframe><a href="https://youtu.be/0NI8RQ4Mhl0">https://youtu.be/0NI8RQ4Mhl0</a></span></p>
+<p><span> </span></p>
 <p><span></span></p>
 <h1>HW2</h1>
 <p>Homework 2 (10%):</p>
@@ -445,22 +443,8 @@ openByGet();
 <p></p>
 <p></p>
 <p></p>
-<p><img alt="" height="225" src="/images/螢幕擷取畫面 2024-12-27 154843.png" width="400"/></p>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/yuh5cKeej14" width="560"></iframe><a href="https://youtu.be/yuh5cKeej14?si=iqQYe9YTG2qmx7_G">https://youtu.be/yuh5cKeej14?si=iqQYe9YTG2qmx7_G</a> </p>
-<p><img alt="" height="225" src="/images/螢幕擷取畫面 2025-01-03 135104.png" width="400"/></p>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/1ljw8RzxuKw" width="560"></iframe></p>
-<p><a href="https://youtu.be/1ljw8RzxuKw">https://youtu.be/1ljw8RzxuKw</a> </p>
-<p><img alt="" height="225" src="/images/螢幕擷取畫面 2025-01-03 142256.png" width="400"/></p>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/ulGTee1QgWM" width="560"></iframe></p>
-<p><a href="https://youtu.be/ulGTee1QgWM">https://youtu.be/ulGTee1QgWM</a> </p>
-<p><iframe allowfullscreen="allowfullscreen" height="314" src="//www.youtube.com/embed/sHCIXEb7CB8" width="560"></iframe></p>
-<p><a href="https://youtu.be/sHCIXEb7CB8">https://youtu.be/sHCIXEb7CB8</a> </p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
 <script src="/static/jsc3d.js" type="text/javascript"></script>
-<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <!-- 可以添加更多的 canvas --></div>
+<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas> <!-- Added 3rd canvas --></div>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
 <option>Flat</option>
 <option>Point</option>
@@ -471,6 +455,7 @@ openByGet();
 <option>low</option>
 <option>high</option>
 </select></div>
+<div><input accept=".stl" id="uploadFile" onchange="loadFile(this.files)" type="file"/> <button onclick="openByUrl()">Load Models from URLs</button></div>
 <script type="text/javascript">
 var viewers = [];
 
@@ -500,7 +485,7 @@ function readSTLfile(opt, canvasId){
     viewers.push(viewer); // 保存 viewer 實例
 }
 
-function changeOption(strOpt,strValue){
+function changeOption(strOpt, strValue){
     console.log("change " + strOpt + " to " + strValue);
     viewers.forEach(viewer => {
         viewer.setParameter(strOpt, strValue);
@@ -510,27 +495,33 @@ function changeOption(strOpt,strValue){
 }
 
 function openByUrl(){
-    var url = document.getElementById("url").value;
-    var opt = getOptions();
-    opt.SceneUrl = url;
-    // 可以添加更多的 STL URL
-    readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
-    readSTLfile(opt, 'cv2'); // 第二個 canvas
-}
-
-function openByGet(){
     var urls = [
         "https://s104.cycu.org/~41223223/w16-1.stl",
-        "https://s104.cycu.org/~41223223/w16-2.stl"
+        "https://s104.cycu.org/~41223223/w16-2.stl",
+        "https://s104.cycu.org/~41223223/w16-3.stl"  // Added third STL file URL
     ];
     var opt = getOptions();
     urls.forEach((url, index) => {
         opt.SceneUrl = url;
-        readSTLfile(opt, 'cv' + (index + 1)); // 動態生成 canvas ID
+        readSTLfile(opt, 'cv' + (index + 1)); // Dynamically selects the canvas ID
     });
 }
 
-openByGet();
+function loadFile(files) {
+    if (files.length > 0) {
+        var file = files[0];
+        var reader = new FileReader();
+        reader.onload = function(event) {
+            var opt = getOptions();
+            var url = event.target.result;  // This is the file URL
+            opt.SceneUrl = url;
+            readSTLfile(opt, 'cv1'); // Load into first canvas
+        };
+        reader.readAsDataURL(file);  // Converts file to Data URL and loads
+    }
+}
+
+openByUrl();
 </script><h1>HW3</h1>
 <p>Homework 3 (20%):</p>
 <p style="padding-left: 30px;">建立 <a href="https://mde.tw/cad2024/content/BonW.html">Balance on Wheels</a> 控制系統設計模擬場景</p>
@@ -572,7 +563,8 @@ openByGet();
 <p></p>
 <p></p>
 <p></p>
-<p></p><h1>HW4</h1>
+<p></p>
+<h1>HW4</h1>
 <p>Homework 4 (20%):</p>
 <p style="padding-left: 30px;">建立 <a href="https://mde.tw/cad2024/content/Quadruped.html">Dingo 機器狗</a>控制系統設計模擬場景</p>
 <p style="padding-left: 30px;"><a href="https://github.com/mdecycu/DingoQuadruped">https://github.com/mdecycu/DingoQuadruped</a></p>
@@ -591,7 +583,8 @@ openByGet();
 <p>建立模擬場景操作過程影片如下:</p>
 <p style="padding-left: 30px;">請將操作影片嵌入 ......</p>
 <p style="padding-left: 30px;">所完成的模擬場景與控制程式檔案下載</p>
-<h3>W16_exam 3</h3><h1>Final Report</h1>
+<h3>W16_exam 3</h3>
+<h1>Final Report</h1>
 <p>期末口頭與書面專題報告 (30%)</p>
 <p>期末口頭專題報告影片:</p>
 <p style="padding-left: 30px;">......</p>
