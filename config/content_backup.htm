@@ -159,7 +159,7 @@ openByGet();
 <h3>HW1 STL</h3>
 <p style="padding-left: 30px;"></p>
 <script src="/static/jsc3d.js" type="text/javascript"></script>
-<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv4" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv5" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv6" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv7" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv8" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv9" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv10" style="border: 1px solid;" width="400"></canvas> <!-- Added tenth canvas --></div>
+<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv4" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv5" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv6" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv7" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv8" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv9" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv10" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv11" style="border: 1px solid;" width="400"></canvas> <!-- Added eleventh canvas --></div>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
 <option>Flat</option>
 <option>Point</option>
@@ -228,7 +228,8 @@ function openByGet(){
         "https://s104.cycu.org/~41223223/w7-7.stl",
         "https://s104.cycu.org/~41223223/w7-8.stl",
         "https://s104.cycu.org/~41223223/w7-9.stl",
-        "https://s104.cycu.org/~41223223/w7-10.stl" // New STL file added
+        "https://s104.cycu.org/~41223223/w7-10.stl",
+        "https://s104.cycu.org/~41223223/w7-11.stl" // New STL file added
     ];
     var opt = getOptions();
     urls.forEach((url, index) => {
@@ -450,8 +451,7 @@ function openByGet() {
 }
 
 openByGet();
-</script>
-<h1>w11_hw</h1>
+</script><h1>w11_hw</h1>
 <p>與 <a href="https://mdecad2024.github.io/hw-41223245/content/index.html">41223245</a>  <a href="https://mdecad2024.github.io/hw-41223251/content/index.html">41223251</a> 同組</p>
 <p><img alt="" height="225" src="/images/螢幕擷取畫面 2024-12-06 143611.png" width="400"/></p>
 <p></p>
