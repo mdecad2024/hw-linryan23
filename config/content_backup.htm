@@ -381,7 +381,7 @@ openByGet();
 </script>
 </p><h3>w7 stl</h3>
 <script src="/static/jsc3d.js" type="text/javascript"></script>
-<div id="models"><!-- 擴展為 11 個 canvas --> <canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv4" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv5" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv6" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv7" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv8" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv9" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv10" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv11" style="border: 1px solid;" width="400"></canvas></div>
+<div id="models"><canvas height="300" id="cv1" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv2" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv3" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv4" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv5" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv6" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv7" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv8" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv9" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv10" style="border: 1px solid;" width="400"></canvas> <canvas height="300" id="cv11" style="border: 1px solid;" width="400"></canvas></div>
 <div style="width: 400px; height: 70px; border: 1px solid;">Model Color:<input id="mdlClr" onchange="changeOption('ModelColor',this.value)" style="margin-right: 50px;" type="color" value="#00ff40"/> Back Color1:<input id="bckClr1" onchange="changeOption('BackgroundColor1',this.value)" style="margin-right: 50px;" type="color"/> Back Color2:<input id="bckClr2" onchange="changeOption('BackgroundColor2',this.value)" type="color"/><br/> Render Mode:<select id="render" onchange="changeOption('RenderMode',this.value)">
 <option>Flat</option>
 <option>Point</option>
@@ -395,16 +395,22 @@ openByGet();
 <script type="text/javascript">
 var viewers = [];
 
-function getOptions(){
+function getOptions() {
     var mc = document.getElementById("mdlClr").value;
     var bc1 = document.getElementById("bckClr1").value;
     var bc2 = document.getElementById("bckClr2").value;
     var ren = document.getElementById("render").value;
     var def = document.getElementById("defini").value;
-    return {ModelColor: mc, BackgroundColor1: bc1, BackgroundColor2: bc2, RenderMode: ren, Definition: def};
+    return {
+        ModelColor: mc,
+        BackgroundColor1: bc1,
+        BackgroundColor2: bc2,
+        RenderMode: ren,
+        Definition: def
+    };
 }
 
-function readSTLfile(opt, canvasId){
+function readSTLfile(opt, canvasId) {
     var canvas = document.getElementById(canvasId);
     var viewer = new JSC3D.Viewer(canvas);
     viewer.setParameter('SceneUrl', opt.SceneUrl);
@@ -421,7 +427,7 @@ function readSTLfile(opt, canvasId){
     viewers.push(viewer);
 }
 
-function changeOption(strOpt, strValue){
+function changeOption(strOpt, strValue) {
     console.log("change " + strOpt + " to " + strValue);
     viewers.forEach(viewer => {
         viewer.setParameter(strOpt, strValue);
@@ -430,29 +436,28 @@ function changeOption(strOpt, strValue){
     });
 }
 
-function openByUrl(){
+function openByUrl() {
     var url = document.getElementById("url").value;
     var opt = getOptions();
     opt.SceneUrl = url;
-    // 為每個 canvas 調用
-    for (let i = 1; i <= 11; i++) {
-        readSTLfile(opt, 'cv' + i);
-    }
+    // 可以添加更多的 STL URL
+    readSTLfile(opt, 'cv1'); // 為每個 canvas 調用
+    readSTLfile(opt, 'cv2'); // 第二個 canvas
 }
 
-function openByGet(){
+function openByGet() {
     var urls = [
-        "https://s104.cycu.org/~41223223/w7-1.stl",
-        "https://s104.cycu.org/~41223223/w7-2.stl",
-        "https://s104.cycu.org/~41223223/w7-3-.stl",  // 替換為實際 URL
-        "https://s104.cycu.org/~41223223/w7-4.stl",  // 替換為實際 URL
-        "https://s104.cycu.org/~41223223/w7-5.stl",  // 替換為實際 URL
-        "https://s104.cycu.org/~41223223/w7-6.stl",  // 替換為實際 URL
-        "https://s104.cycu.org/~41223223/w7-7.stl",  // 替換為實際 URL
-        "https://s104.cycu.org/~41223223/w7-8.stl",  // 替換為實際 URL
-        "https://s104.cycu.org/~41223223/w7-9.stl",  // 替換為實際 URL
-        "https://s104.cycu.org/~41223223/w7-10.stl", // 替換為實際 URL
-        "https://s104.cycu.org/~41223223/w7-11.stl"  // 替換為實際 URL
+        "https://s104.cycu.org/~441223223/w7-1.stl",
+        "https://s104.cycu.org/~441223223/w7-2.stl",
+        "https://s104.cycu.org/~441223223/w7-3-.stl",
+        "https://s104.cycu.org/~441223223/w7-4.stl",
+        "https://s104.cycu.org/~441223223/w7-5.stl",
+        "https://s104.cycu.org/~441223223/w7-6.stl",
+        "https://s104.cycu.org/~441223223/w7-7.stl",
+        "https://s104.cycu.org/~441223223/w7-8.stl",
+        "https://s104.cycu.org/~441223223/w7-9.stl",
+        "https://s104.cycu.org/~441223223/w7-10.stl",
+        "https://s104.cycu.org/~441223223/w7-11.stl"
     ];
     var opt = getOptions();
     urls.forEach((url, index) => {
@@ -853,3 +858,4 @@ openByUrl();
 <p style="padding-left: 30px;"><a href="https://youtu.be/TATZBN1k_ME">https://youtu.be/TATZBN1k_ME</a> </p>
 <p style="padding-left: 30px;"></p>
 <p style="padding-left: 30px;"><a href="/downloads/電腦輔助設計與實習.pdf">/downloads/電腦輔助設計與實習.pdf</a></p>
+<p style="padding-left: 30px;">心得:我特堂學習到了<span>許多</span><span>關於S</span><span>olvespace、NX、</span><span>CoppeliaSim等應用程式的使用方法</span><span>，包括 Solvespace 和 NX 的繪圖與零件組合、將組合件匯入 CoppeliaSim 進行模擬，也學習到了小組默契配合，也上我認識了拍影片上傳YOUTUBE 然後貼上我的網子讓每個人都看得到我繪畫過程，老師人也很有耐心，有問題問老師，老師都會很有耐心地講解每個過程，即我們不會的英文。</span></p>
